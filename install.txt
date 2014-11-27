@@ -1,0 +1,38 @@
+Push Demo using Google Cloud Messaging
+By Ken Magnusson
+
+To use this demo, first follow directions at:
+
+http://developer.android.com/google/gcm/gs.html
+
+You will need Project ID and API Key for Server from Google Developer Site.
+
+To save Device registration id's into a database you can use this table schema:
+
+CREATE TABLE `android_devices` (
+  `id` int(16) NOT NULL AUTO_INCREMENT,
+  `registration_id` varchar(512) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `registration_id` (`registration_id`),
+)
+
+In the push_demo.php file, change the database details to your database settings.
+
+Change the GOOGLE_KEY constant to your API key from the Google Developer site.
+Upload the push_demo.php file to a webserver(haven't tried a local XAMPP server, but that should work as well)
+
+After importing the project into Android studio, change the following:
+
+In PushDemo.java
+Line 33: Change PROJECT_ID to your project ID from Google developer.
+Line 34: Change PUSH_SERVER to your webserver location where you uploaded push_demo.php
+
+Run app.
+
+To change text message sent from device, edit string at line 167 in PushDemo.java.
+
+To send message from webpage use
+http://www.where_ever_you_uploaded_php_file.com/push_demo.php?send_message&message="what ever you want to send as a message"
+
+View log file at
+http://www.where_ever_you_uploaded_php_file.com/push_demo.log
